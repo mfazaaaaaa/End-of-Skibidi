@@ -10,23 +10,37 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
 
     private float horizontal;
-    private float speed = 8f;
-    private float jumpingPower = 16f;
+    private float speed = 10f;
+    private float jumpingPower = 20f;
     private bool isFacingRight = true;
+    private Animator anim;
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        rb.interpolation = RigidbodyInterpolation2D.Interpolate;
+        rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        anim = GetComponent<Animator>();
+    }
+
+    private void FixedUpdate()
     {
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+    }
 
-        if (isFacingRight && horizontal > 0f)
+    void Update()
+    {
+        if (isFacingRight && horizontal < 0f)
         {
             Flip();
         }
-        else if (isFacingRight && horizontal < 0f)
+        else if (!isFacingRight && horizontal > 0f)
         {
             Flip();
         }
+
+        anim.SetBool("run", Mathf.Abs(horizontal) > 0.1f);
+        anim.SetBool("jump", !IsGrounded());
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -55,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = localScale;
     }
 
-    public void Move (InputAction.CallbackContext context)
+    public void Move(InputAction.CallbackContext context)
     {
         horizontal = context.ReadValue<Vector2>().x;
     }
