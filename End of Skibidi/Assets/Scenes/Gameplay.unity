@@ -660,7 +660,6 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  animator: {fileID: 999815285}
 --- !u!114 &999815281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -803,7 +802,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.47041166, y: 3.0351586}
+  m_Offset: {x: 0.5181171, y: 5.4761767}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -814,7 +813,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.6065423, y: 6.318242}
+  m_Size: {x: 3.7019532, y: 11.200278}
   m_EdgeRadius: 0
 --- !u!50 &999815283
 Rigidbody2D:
@@ -842,7 +841,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!95 &999815285
 Animator:
   serializedVersion: 5
@@ -1121,7 +1120,6 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  animator: {fileID: 0}
 --- !u!114 &1331197788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1778,6 +1776,10 @@ PrefabInstance:
     - target: {fileID: 2303722590350109261, guid: 82a6a1046c754cd41b834b737cd54f62, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3729565534961169798, guid: 82a6a1046c754cd41b834b737cd54f62, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.4883246
       objectReference: {fileID: 0}
     - target: {fileID: 7305512893621762639, guid: 82a6a1046c754cd41b834b737cd54f62, type: 3}
       propertyPath: m_LocalRotation.w

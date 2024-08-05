@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float horizontal;
     private float speed = 10f;
-    private float jumpingPower = 13f;
+    private float jumpingPower = 20f;
     private bool isFacingRight = true;
     private Animator anim;
 
@@ -40,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         anim.SetBool("run", Mathf.Abs(horizontal) > 0.1f);
+        anim.SetBool("jump", !IsGrounded());
     }
 
     public void Jump(InputAction.CallbackContext context)
