@@ -13,12 +13,15 @@ public class PlayerMovement : MonoBehaviour
     private float speed = 10f;
     private float jumpingPower = 16f;
     private bool isFacingRight = true;
+    private Animator anim;
+
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.interpolation = RigidbodyInterpolation2D.Interpolate;
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        anim = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -36,6 +39,9 @@ public class PlayerMovement : MonoBehaviour
         {
             Flip();
         }
+
+        anim.SetBool("run", Mathf.Abs(horizontal) > 0.1f);
+        anim.SetBool("jump", !IsGrounded());
 
     }
 
