@@ -363,6 +363,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Toliet
       objectReference: {fileID: 0}
+    - target: {fileID: 2207091217201931293, guid: bb792be2b92c78b4892a3f3d4a41c20c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2241594128992981586, guid: bb792be2b92c78b4892a3f3d4a41c20c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1311,6 +1319,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2303722590350109261, guid: 82a6a1046c754cd41b834b737cd54f62, type: 3}
   m_PrefabInstance: {fileID: 3770287248593361630}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &999815287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999815279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73cbc11b6e02941479ac4ed504d1e034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingHealth: 3
 --- !u!1 &1234944029
 GameObject:
   m_ObjectHideFlags: 0
@@ -2382,6 +2403,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2097666691}
+  - component: {fileID: 2097666692}
   m_Layer: 5
   m_Name: Healthbar
   m_TagString: Untagged
@@ -2410,6 +2432,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2097666692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097666690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c726a94b3d749194583d5027282d4c37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: {fileID: 999815287}
+  totalhealthBar: {fileID: 92639818}
+  currenthealthBar: {fileID: 1962618148}
 --- !u!1001 &3770287248593361630
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2537,6 +2574,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1094496383028113966, guid: 82a6a1046c754cd41b834b737cd54f62, type: 3}
       insertIndex: -1
       addedObject: {fileID: 999815285}
+    - targetCorrespondingSourceObject: {fileID: 1094496383028113966, guid: 82a6a1046c754cd41b834b737cd54f62, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 999815287}
   m_SourcePrefab: {fileID: 100100000, guid: 82a6a1046c754cd41b834b737cd54f62, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
