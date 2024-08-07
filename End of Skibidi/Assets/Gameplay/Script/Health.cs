@@ -13,7 +13,7 @@ public class Health : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    private void TakeDamage(float _damage)
+    public void TakeDamage(float _damage)
     {
         currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
 
