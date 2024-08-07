@@ -1,16 +1,25 @@
+using System.Collections;
 using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    [Header("Health")]
     [SerializeField] private float startingHealth;
     public float currentHealth { get; private set; }
     private Animator anim;
     private bool dead;
 
+    [Header("iFrames")]
+    [SerializeField] private float iFrameDuration;
+    [SerializeField] private int numberOfFlashes;
+
+    private Renderer[] renderers;
+
     private void Awake()
     {
         currentHealth = startingHealth;
         anim = GetComponent<Animator>();
+        renderers = GetComponentsInChildren<Renderer>();
     }
 
     public void TakeDamage(float _damage)
@@ -19,13 +28,14 @@ public class Health : MonoBehaviour
 
         if (currentHealth > 0)
         {
-            //damage
+            // damage
             anim.SetTrigger("hurt");
-            //iframes
+            // iFrames
+            StartCoroutine(Invulnerability());
         }
         else
         {
-            //die
+            // die
             if (!dead)
             {
                 anim.SetTrigger("die");
@@ -35,9 +45,24 @@ public class Health : MonoBehaviour
         }
     }
 
-    private void Update()
+    private IEnumerator Invulnerability()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-            TakeDamage(1);
+        Physics2D.IgnoreLayerCollision(10, 11, true);
+        for (int i = 0; i < numberOfFlashes; i++)
+        {
+            SetColor(new Color(1, 0, 0, 0.5f)); // Set color to semi-transparent red
+            yield return new WaitForSeconds(iFrameDuration / (numberOfFlashes * 2));
+            SetColor(Color.white); // Set color back to white
+            yield return new WaitForSeconds(iFrameDuration / (numberOfFlashes * 2));
+        }
+        Physics2D.IgnoreLayerCollision(10, 11, false);
+    }
+
+    private void SetColor(Color color)
+    {
+        foreach (Renderer renderer in renderers)
+        {
+            renderer.material.color = color;
+        }
     }
 }
