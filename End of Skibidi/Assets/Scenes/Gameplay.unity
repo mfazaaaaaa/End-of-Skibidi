@@ -1264,19 +1264,6 @@ MonoBehaviour:
   startingHealth: 3
   iFrameDuration: 1
   numberOfFlashes: 3
---- !u!114 &999815288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 999815279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6fe61b57552a684799dd0b53c059f5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
 --- !u!1 &1002048203
 GameObject:
   m_ObjectHideFlags: 0
@@ -2660,9 +2647,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1094496383028113966, guid: 82a6a1046c754cd41b834b737cd54f62, type: 3}
       insertIndex: -1
       addedObject: {fileID: 999815287}
-    - targetCorrespondingSourceObject: {fileID: 1094496383028113966, guid: 82a6a1046c754cd41b834b737cd54f62, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 999815288}
   m_SourcePrefab: {fileID: 100100000, guid: 82a6a1046c754cd41b834b737cd54f62, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

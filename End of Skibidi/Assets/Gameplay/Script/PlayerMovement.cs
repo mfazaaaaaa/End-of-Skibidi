@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float horizontal;
     private float speed = 20f;
-    private float jumpingPower = 16f;
+    private float jumpingPower = 13f;
     private bool isFacingRight = true;
     private Animator anim;
 
