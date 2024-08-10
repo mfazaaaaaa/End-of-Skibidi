@@ -4,7 +4,6 @@ public class EnemySideways : MonoBehaviour
 {
     [SerializeField] private float movementDistance;
     [SerializeField] private float speed;
-    [SerializeField] private float damage;
     private bool movingLeft;
     private float leftEdge;
     private float rightEdge;
@@ -40,14 +39,6 @@ public class EnemySideways : MonoBehaviour
             {
                 movingLeft = true;
             }
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            collision.GetComponent<Health>().TakeDamage(damage);
         }
     }
 }

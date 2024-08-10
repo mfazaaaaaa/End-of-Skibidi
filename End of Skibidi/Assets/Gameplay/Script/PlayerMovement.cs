@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float horizontal;
     private float speed = 20f;
-    private float jumpingPower = 16f;
+    private float jumpingPower = 13f;
     private bool isFacingRight = true;
     private Animator anim;
 
@@ -74,5 +74,13 @@ public class PlayerMovement : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         horizontal = context.ReadValue<Vector2>().x;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Enemy")
+        {
+            collision.GetComponent<Health>().TakeDamage(1);
+        }
     }
 }

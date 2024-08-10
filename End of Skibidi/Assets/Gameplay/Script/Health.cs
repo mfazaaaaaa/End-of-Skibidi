@@ -39,7 +39,15 @@ public class Health : MonoBehaviour
             if (!dead)
             {
                 anim.SetTrigger("die");
+
+                //player
+                if(GetComponent<PlayerMovement>() != null)
                 GetComponent<PlayerMovement>().enabled = false;
+
+                //enemy
+                if(GetComponent<EnemySideways>() != null)
+                   GetComponentInParent<EnemySideways>().enabled = false;
+
                 dead = true;
             }
         }
@@ -65,4 +73,10 @@ public class Health : MonoBehaviour
             renderer.material.color = color;
         }
     }
+
+    private void Deactivate()
+    {
+        gameObject.SetActive(false);
+    }
 }
+
