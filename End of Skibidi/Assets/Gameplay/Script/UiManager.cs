@@ -7,9 +7,17 @@ public class UiManager : MonoBehaviour
     [Header("Pause")]
     [SerializeField] private GameObject pauseScreen;
 
+    [Header("Win")]
+    [SerializeField] private GameObject winPanel;
+
+    [Header("Lose")]
+    [SerializeField] private GameObject losePanel;
+
     private void Awake()
     {
         pauseScreen.SetActive(false);
+        winPanel.SetActive(false);
+        losePanel.SetActive(false);
     }
 
     private void Update()
@@ -23,7 +31,7 @@ public class UiManager : MonoBehaviour
         }
     }
 
-    private void PauseGame(bool status)
+    public void PauseGame(bool status)
     {
         pauseScreen.SetActive(status);
 
@@ -31,5 +39,27 @@ public class UiManager : MonoBehaviour
             Time.timeScale = 0;
         else
             Time.timeScale = 1;
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1;
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
+    public void ShowLosePanel()
+    {
+        losePanel.SetActive(true);
     }
 }

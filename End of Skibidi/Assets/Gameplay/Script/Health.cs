@@ -14,12 +14,22 @@ public class Health : MonoBehaviour
     [SerializeField] private int numberOfFlashes;
 
     private Renderer[] renderers;
+    private UiManager uiManager;
+
+    // Tambahkan flag untuk menentukan apakah ini player atau bukan
+    [SerializeField] private bool isPlayer;
 
     private void Awake()
     {
         currentHealth = startingHealth;
         anim = GetComponent<Animator>();
         renderers = GetComponentsInChildren<Renderer>();
+
+        // Menghubungkan UiManager
+        if (isPlayer)
+        {
+            uiManager = FindObjectOfType<UiManager>();
+        }
     }
 
     public void TakeDamage(float _damage)
@@ -41,12 +51,21 @@ public class Health : MonoBehaviour
                 anim.SetTrigger("die");
 
                 //player
-                if(GetComponent<PlayerMovement>() != null)
-                GetComponent<PlayerMovement>().enabled = false;
+                if (isPlayer)
+                {
+                    if (GetComponent<PlayerMovement>() != null)
+                        GetComponent<PlayerMovement>().enabled = false;
 
-                //enemy
-                if(GetComponent<EnemySideways>() != null)
-                   GetComponentInParent<EnemySideways>().enabled = false;
+                    // Tampilkan lose panel hanya jika ini adalah player
+                    if (uiManager != null)
+                        uiManager.ShowLosePanel();
+                }
+                else
+                {
+                    //enemy
+                    if (GetComponent<EnemySideways>() != null)
+                        GetComponentInParent<EnemySideways>().enabled = false;
+                }
 
                 dead = true;
             }
@@ -79,4 +98,3 @@ public class Health : MonoBehaviour
         gameObject.SetActive(false);
     }
 }
-
