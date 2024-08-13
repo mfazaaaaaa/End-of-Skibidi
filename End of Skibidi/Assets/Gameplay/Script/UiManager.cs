@@ -6,6 +6,7 @@ public class UiManager : MonoBehaviour
 {
     [Header("Pause")]
     [SerializeField] private GameObject pauseScreen;
+    [SerializeField] private GameObject settingPanel;
 
     [Header("Win")]
     [SerializeField] private GameObject winPanel;
@@ -18,6 +19,7 @@ public class UiManager : MonoBehaviour
         pauseScreen.SetActive(false);
         winPanel.SetActive(false);
         losePanel.SetActive(false);
+        settingPanel.SetActive(false);
     }
 
     private void Update()
@@ -39,6 +41,11 @@ public class UiManager : MonoBehaviour
             Time.timeScale = 0;
         else
             Time.timeScale = 1;
+    }
+
+    public void Setting(bool status)
+    {
+        settingPanel.SetActive(status);
     }
 
     public void Restart()
