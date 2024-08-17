@@ -3,6 +3,7 @@ using UnityEngine;
 public class FinishLine : MonoBehaviour
 {
     [SerializeField] private GameObject winPanel;
+    private LevelManager levelManager;
 
     private void Start()
     {
@@ -11,12 +12,12 @@ public class FinishLine : MonoBehaviour
         {
             winPanel.SetActive(false);
         }
+
+        levelManager = FindObjectOfType<LevelManager>();
     }
 
-    // Fungsi ini dipanggil saat sesuatu masuk ke dalam BoxCollider2D
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Periksa apakah objek yang masuk adalah player (misalnya dengan tag "Player")
         if (other.CompareTag("Player"))
         {
             // Tampilkan panel kemenangan
@@ -25,6 +26,9 @@ public class FinishLine : MonoBehaviour
                 winPanel.SetActive(true);
                 Time.timeScale = 0; // Menghentikan waktu saat menang (opsional)
             }
+
+            // Hitung jumlah bintang yang diperoleh
+            levelManager.CalculateStars();
         }
     }
 }
