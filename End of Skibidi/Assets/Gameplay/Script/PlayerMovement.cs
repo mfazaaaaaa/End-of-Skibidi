@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
     private float horizontal;
     private float speed = 20f;
     private float jumpingPower = 13f;
+    private float jumpMultiplier = 2f;
+    private float fallMultiplier = 5f;
     private bool isFacingRight = true;
     private Animator anim;
 
@@ -27,6 +29,12 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+
+        // Tambahkan kecepatan jatuh saat di udara
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+        }
     }
 
     void Update()
@@ -49,12 +57,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed && IsGrounded())
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
-        }
-
-        if (context.canceled && rb.velocity.y > 0f)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            rb.velocity = new Vector2(rb.velocity.x, jumpingPower * jumpMultiplier);
         }
     }
 

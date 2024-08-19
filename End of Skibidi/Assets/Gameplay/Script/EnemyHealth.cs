@@ -8,13 +8,13 @@ public class EnemyHealth : MonoBehaviour
     private Animator anim;
     private bool dead;
 
-    private LevelManager levelManager;
+    private GameplayManager gameplayManager;
 
     private void Awake()
     {
         currentHealth = startingHealth;
         anim = GetComponent<Animator>();
-        levelManager = FindObjectOfType<LevelManager>();
+        gameplayManager = FindObjectOfType<GameplayManager>();
     }
 
     public void TakeDamage(float _damage)
@@ -38,7 +38,7 @@ public class EnemyHealth : MonoBehaviour
                     GetComponentInParent<EnemySideways>().enabled = false;
 
                 // Inform LevelManager bahwa musuh ini telah dikalahkan
-                levelManager.EnemyDefeated();
+                gameplayManager.EnemyDefeated();
 
                 dead = true;
                 Destroy(gameObject, 2f); // Hancurkan musuh setelah animasi mati

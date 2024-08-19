@@ -3,7 +3,7 @@ using UnityEngine;
 public class FinishLine : MonoBehaviour
 {
     [SerializeField] private GameObject winPanel;
-    private LevelManager levelManager;
+    private GameplayManager gameplayManager;
 
     private void Start()
     {
@@ -13,7 +13,7 @@ public class FinishLine : MonoBehaviour
             winPanel.SetActive(false);
         }
 
-        levelManager = FindObjectOfType<LevelManager>();
+        gameplayManager = FindObjectOfType<GameplayManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -28,7 +28,7 @@ public class FinishLine : MonoBehaviour
             }
 
             // Hitung jumlah bintang yang diperoleh
-            levelManager.CalculateStars();
+            gameplayManager.CalculateStars();
         }
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelManager : MonoBehaviour
+public class GameplayManager : MonoBehaviour
 {
     [Header("Enemy Management")]
     public int totalEnemies; // Jumlah total musuh di level ini
