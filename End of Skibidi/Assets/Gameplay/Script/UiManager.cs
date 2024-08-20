@@ -22,6 +22,11 @@ public class UiManager : MonoBehaviour
         settingPanel.SetActive(false);
     }
 
+    void Start()
+    {
+        FindObjectOfType<Level1>().ShowLevelText("Level 1");
+    }
+
     private void Update()
     {
         if(Input.GetKeyUp(KeyCode.Escape))

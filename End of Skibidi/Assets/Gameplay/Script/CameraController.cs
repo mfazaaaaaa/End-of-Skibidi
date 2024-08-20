@@ -8,16 +8,17 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Transform startPoint; // Titik awal stage (batas kiri)
     [SerializeField] private Transform endPoint;   // Titik akhir stage (batas kanan)
 
-    [SerializeField] private float previewDuration = 3f; // Durasi preview dalam detik
-    [SerializeField] private float pauseDuration = 1f;   // Durasi berhenti di endPoint dalam detik
+    [SerializeField] private float previewDuration = 3f;    // Durasi preview dalam detik
+    [SerializeField] private float pauseDuration = 1f;      // Durasi berhenti di endPoint dalam detik
     [SerializeField] private float moveToPlayerDuration = 2f; // Durasi bergerak ke pemain dalam detik
+    [SerializeField] private float delayBeforePreview = 1f;  // Durasi delay sebelum memulai preview
 
     private bool isPreviewing = true;
 
     void Start()
     {
-        // Mulai coroutine untuk preview stage
-        StartCoroutine(PreviewStage());
+        // Mulai coroutine untuk menunggu sebelum memulai preview stage
+        StartCoroutine(StartPreviewAfterDelay());
     }
 
     void Update()
@@ -29,6 +30,13 @@ public class CameraController : MonoBehaviour
             float clampedX = Mathf.Clamp(targetX, startPoint.position.x, endPoint.position.x);
             transform.position = new Vector3(clampedX, transform.position.y, transform.position.z);
         }
+    }
+
+    private IEnumerator StartPreviewAfterDelay()
+    {
+        // Menunggu sebelum memulai preview stage
+        yield return new WaitForSeconds(delayBeforePreview);
+        StartCoroutine(PreviewStage());
     }
 
     private IEnumerator PreviewStage()
