@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private float fallMultiplier = 5f;
     private bool isFacingRight = true;
     private Animator anim;
-
+    private bool canMove = false;  // Menentukan apakah player bisa bergerak atau tidak
 
     private void Awake()
     {
@@ -26,8 +25,25 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    private void Start()
+    {
+        // Mulai coroutine untuk menunda eksekusi script
+        StartCoroutine(DelayedStart());
+    }
+
+    private IEnumerator DelayedStart()
+    {
+        // Tunggu selama 4 detik
+        yield return new WaitForSeconds(5f);
+
+        // Setelah 4 detik, izinkan player untuk bergerak
+        canMove = true;
+    }
+
     private void FixedUpdate()
     {
+        if (!canMove) return;  // Jika belum boleh bergerak, hentikan eksekusi FixedUpdate
+
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
         // Tambahkan kecepatan jatuh saat di udara
@@ -39,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (!canMove) return;  // Jika belum boleh bergerak, hentikan eksekusi Update
+
         if (isFacingRight && horizontal < 0f)
         {
             Flip();
@@ -50,12 +68,11 @@ public class PlayerMovement : MonoBehaviour
 
         anim.SetBool("run", Mathf.Abs(horizontal) > 0.1f);
         anim.SetBool("jump", !IsGrounded());
-
     }
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.performed && IsGrounded())
+        if (context.performed && IsGrounded() && canMove)  // Tambahkan pengecekan canMove
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower * jumpMultiplier);
         }
@@ -76,12 +93,15 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        horizontal = context.ReadValue<Vector2>().x;
+        if (canMove)  // Hanya baca input jika canMove true
+        {
+            horizontal = context.ReadValue<Vector2>().x;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Enemy")
+        if (collision.tag == "Enemy" && canMove)  // Hanya boleh menyerang jika canMove true
         {
             collision.GetComponent<EnemyHealth>().TakeDamage(1);
         }
