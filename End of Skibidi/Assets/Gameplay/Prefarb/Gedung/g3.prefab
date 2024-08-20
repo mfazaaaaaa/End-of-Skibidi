@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4768123926087173214}
   - component: {fileID: 6552830596544240217}
   - component: {fileID: 1177916662025486295}
+  - component: {fileID: 5326590516596797606}
   m_Layer: 6
   m_Name: g3
   m_TagString: Untagged
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 23592177ba940444e9ae710a65d26786, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -115,7 +116,7 @@ BoxCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 7.9633365}
   m_SpriteTilingProperty:
@@ -130,3 +131,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10.403267, y: 0.39496326}
   m_EdgeRadius: 0
+--- !u!251 &5326590516596797606
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4173431284154929045}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
