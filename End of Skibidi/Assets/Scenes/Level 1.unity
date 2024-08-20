@@ -2250,7 +2250,9 @@ MonoBehaviour:
   player: {fileID: 999815286}
   startPoint: {fileID: 91427450}
   endPoint: {fileID: 539571336}
-  previewDuration: 5
+  previewDuration: 2
+  pauseDuration: 0.5
+  moveToPlayerDuration: 1
 --- !u!1 &669453222
 GameObject:
   m_ObjectHideFlags: 0
