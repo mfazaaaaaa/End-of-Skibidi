@@ -6,7 +6,7 @@ public class UiManager : MonoBehaviour
 {
     [Header("Pause")]
     [SerializeField] private GameObject pauseScreen;
-    [SerializeField] private GameObject settingPanel;
+    [SerializeField] private GameObject settingPanel, confirmpanel;
 
     [Header("Win")]
     [SerializeField] private GameObject winPanel;
@@ -20,6 +20,7 @@ public class UiManager : MonoBehaviour
         winPanel.SetActive(false);
         losePanel.SetActive(false);
         settingPanel.SetActive(false);
+        confirmpanel.SetActive(false);
     }
 
 
@@ -61,9 +62,9 @@ public class UiManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void Quit()
+    public void Backmainmenu(bool status)
     {
-        Application.Quit();
+        confirmpanel.SetActive(status);
     }
 
     public void ShowLosePanel()
