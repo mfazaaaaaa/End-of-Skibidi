@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 391945894204895498}
   - component: {fileID: 7839502316234621428}
   - component: {fileID: 3546367460282647655}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: truk
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3647426550283155181}
   - component: {fileID: 3273164784135567390}
   - component: {fileID: 4139312239435206801}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: tenda solid
   m_TagString: Untagged
   m_Icon: {fileID: 0}

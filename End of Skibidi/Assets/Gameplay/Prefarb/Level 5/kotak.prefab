@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 418201932664601880}
   - component: {fileID: 1778900306514615440}
   - component: {fileID: 4001045011357206760}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: kotak
   m_TagString: Untagged
   m_Icon: {fileID: 0}

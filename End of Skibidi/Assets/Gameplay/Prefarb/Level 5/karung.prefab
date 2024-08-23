@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6324131247672708586}
   - component: {fileID: 6146341062430601093}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: karung
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7774804108603535965}
   - component: {fileID: 4951484308341100966}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: karung (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4021570920273866234}
   - component: {fileID: 5197981977196906754}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: karung (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 488376064569985418}
   - component: {fileID: 1296303465008792319}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: karung (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,7 +346,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2945733599913764609}
   - component: {fileID: 4377314036589456807}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: karung (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8631898347904421419}
   - component: {fileID: 2156643700378365246}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: karung (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -514,7 +514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6302463746280868473}
   - component: {fileID: 4018118877200922822}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: karung
   m_TagString: Untagged
   m_Icon: {fileID: 0}
