@@ -17,6 +17,9 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     private bool canMove = false;  // Menentukan apakah player bisa bergerak atau tidak
 
+    [Header("Bounce Settings")]
+    public float bounceForce = 10f; // Kekuatan pantulan saat menginjak bos
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -103,7 +106,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.tag == "Enemy" && canMove)  // Hanya boleh menyerang jika canMove true
         {
-            collision.GetComponent<EnemyHealth>().TakeDamage(1);
+            // Panggil TakeDamage dan kirimkan Rigidbody pemain serta bounceForce
+            collision.GetComponent<EnemyHealth>().TakeDamage(1, rb, bounceForce);
         }
     }
 }

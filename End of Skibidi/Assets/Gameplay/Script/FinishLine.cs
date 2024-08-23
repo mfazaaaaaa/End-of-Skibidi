@@ -31,4 +31,18 @@ public class FinishLine : MonoBehaviour
             gameplayManager.CalculateStars();
         }
     }
+
+    public void CompleteLevel()
+    {
+        // Tampilkan panel kemenangan, hentikan waktu, dll.
+        if (winPanel != null)
+        {
+            winPanel.SetActive(true);
+            Time.timeScale = 0; // Menghentikan waktu saat menang (opsional)
+        }
+
+        // Hitung jumlah bintang yang diperoleh
+        gameplayManager.CalculateStars();
+    }
+
 }

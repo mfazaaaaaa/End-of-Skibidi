@@ -369,6 +369,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 1
+  isBoss: 0
+  enemyPrefab: {fileID: 0}
+  leftSpawnPoint: {fileID: 0}
+  rightSpawnPoint: {fileID: 0}
+  invulnerabilityDuration: 2
+  numberOfFlashes: 5
 --- !u!4 &4391293297274675925 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: 4c7af1905bd9fd3469bd59bf54e1d6a1, type: 3}
