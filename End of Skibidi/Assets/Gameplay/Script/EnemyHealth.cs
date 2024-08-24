@@ -11,6 +11,9 @@ public class EnemyHealth : MonoBehaviour
 
     [Header("Is Boss")]
     [SerializeField] private bool isBoss; // Tandai jika musuh ini adalah bos
+    [SerializeField] private GameObject enemyPrefab; // Prefab musuh yang akan dipanggil
+    [SerializeField] private Transform leftSpawnPoint; // Titik spawn musuh di sebelah kiri bos
+    [SerializeField] private Transform rightSpawnPoint; // Titik spawn musuh di sebelah kanan bos
 
     [Header("Invulnerability")]
     [SerializeField] private float invulnerabilityDuration = 2f; // Durasi invulnerability
@@ -48,6 +51,11 @@ public class EnemyHealth : MonoBehaviour
 
             // Mulai invulnerability (iframe)
             StartCoroutine(Invulnerability());
+
+            if (isBoss)
+            {
+                SpawnEnemies(); // Panggil musuh jika ini adalah bos
+            }
         }
         else
         {
@@ -75,13 +83,23 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
+    private void SpawnEnemies()
+    {
+        if (enemyPrefab != null && leftSpawnPoint != null && rightSpawnPoint != null)
+        {
+            // Spawn musuh di kiri dan kanan bos
+            Instantiate(enemyPrefab, leftSpawnPoint.position, Quaternion.identity);
+            Instantiate(enemyPrefab, rightSpawnPoint.position, Quaternion.identity);
+        }
+    }
+
     private void BouncePlayer(Rigidbody2D playerRb, float bounceForce)
     {
         // Set kecepatan vertikal ke atas
         playerRb.velocity = new Vector2(playerRb.velocity.x, bounceForce);
 
         // Pantulan ke kiri atau kanan secara acak
-        float randomDirection = Random.Range(-1f, 1f); 
+        float randomDirection = Random.Range(-1f, 1f);
         playerRb.AddForce(new Vector2(randomDirection * bounceForce, bounceForce), ForceMode2D.Impulse);
     }
 
