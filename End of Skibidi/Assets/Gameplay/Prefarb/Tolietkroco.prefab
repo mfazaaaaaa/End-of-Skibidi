@@ -176,6 +176,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -9118178901715260323, guid: 91928d805be557545b7ab87cdbab6a26, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: -8653719598885068355, guid: 91928d805be557545b7ab87cdbab6a26, type: 3}
       propertyPath: m_Name
       value: Tolietkroco
@@ -183,6 +187,10 @@ PrefabInstance:
     - target: {fileID: -8653719598885068355, guid: 91928d805be557545b7ab87cdbab6a26, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: -8427976977354563686, guid: 91928d805be557545b7ab87cdbab6a26, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 91928d805be557545b7ab87cdbab6a26, type: 3}
       propertyPath: m_LocalScale.x
@@ -235,6 +243,10 @@ PrefabInstance:
     - target: {fileID: -7552582706839291426, guid: 91928d805be557545b7ab87cdbab6a26, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 58314412557212178, guid: 91928d805be557545b7ab87cdbab6a26, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -41,7 +41,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -9081433449718792559, guid: b563627613c90b44cbd4f145f3b57394, type: 3}
       propertyPath: m_SortingOrder
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: -8653719598885068355, guid: b563627613c90b44cbd4f145f3b57394, type: 3}
       propertyPath: m_Name
@@ -125,7 +125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5642894275382548474, guid: b563627613c90b44cbd4f145f3b57394, type: 3}
       propertyPath: m_SortingOrder
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -5559784385719379605, guid: b563627613c90b44cbd4f145f3b57394, type: 3}
       propertyPath: m_Layer
@@ -133,7 +133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4496100827722097064, guid: b563627613c90b44cbd4f145f3b57394, type: 3}
       propertyPath: m_SortingOrder
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -4017628095572725480, guid: b563627613c90b44cbd4f145f3b57394, type: 3}
       propertyPath: m_Layer
@@ -153,7 +153,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2926298239643482397, guid: b563627613c90b44cbd4f145f3b57394, type: 3}
       propertyPath: m_SortingOrder
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -2631276252154265238, guid: b563627613c90b44cbd4f145f3b57394, type: 3}
       propertyPath: m_Layer
@@ -217,7 +217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1625268029777959848, guid: b563627613c90b44cbd4f145f3b57394, type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2015287661806188099, guid: b563627613c90b44cbd4f145f3b57394, type: 3}
       propertyPath: m_LocalRotation.w
@@ -309,7 +309,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6489565449210892079, guid: b563627613c90b44cbd4f145f3b57394, type: 3}
       propertyPath: m_SortingOrder
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7905440446968883676, guid: b563627613c90b44cbd4f145f3b57394, type: 3}
       propertyPath: m_LocalRotation.w
@@ -566,6 +566,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  bounceForce: 10
 --- !u!95 &1022033875197348723
 Animator:
   serializedVersion: 5
