@@ -21,6 +21,7 @@ public class UiManager : MonoBehaviour
         losePanel.SetActive(false);
         settingPanel.SetActive(false);
         confirmpanel.SetActive(false);
+        Time.timeScale = 1f;
     }
 
 
@@ -70,5 +71,20 @@ public class UiManager : MonoBehaviour
     public void ShowLosePanel()
     {
         losePanel.SetActive(true);
+    }
+
+    public void NextLevel()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSceneIndex + 1;
+
+        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(nextSceneIndex);
+        }
+        else
+        {
+            Debug.Log("Tidak ada level selanjutnya!");
+        }
     }
 }
