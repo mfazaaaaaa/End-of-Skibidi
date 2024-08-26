@@ -1,6 +1,6 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -15,10 +15,19 @@ public class PlayerMovement : MonoBehaviour
     private float fallMultiplier = 5f;
     private bool isFacingRight = true;
     private Animator anim;
-    private bool canMove = false;  // Menentukan apakah player bisa bergerak atau tidak
+    private bool canMove = false;
 
     [Header("Bounce Settings")]
     public float bounceForce = 10f; // Kekuatan pantulan saat menginjak bos
+
+    // Tambahkan variabel untuk cooldown dan status lompat
+    private bool isJumping = false;
+    private float jumpSFXCooldown = 0.2f;  // Waktu jeda agar SFX tidak diputar berulang
+    private float lastJumpTime = 0f;
+
+    [Header("Audio")]
+    public AudioClip jumpSFX;
+    public AudioClip walkSFX;
 
     private void Awake()
     {
@@ -28,37 +37,43 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    private void FixedUpdate()
+    {
+        if (!canMove) return;
+
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+        }
+
+        // Memastikan SFX Jump diputar tanpa gangguan
+        if (isJumping && Time.time - lastJumpTime >= jumpSFXCooldown)
+        {
+            AudioManager.Instance.PlaySFX(jumpSFX);
+            lastJumpTime = Time.time;
+            isJumping = false;
+        }
+    }
+
+
     private void Start()
     {
-        // Mulai coroutine untuk menunda eksekusi script
         StartCoroutine(DelayedStart());
     }
 
     private IEnumerator DelayedStart()
     {
-        // Tunggu selama 4 detik
         yield return new WaitForSeconds(5f);
-
-        // Setelah 4 detik, izinkan player untuk bergerak
         canMove = true;
     }
 
-    private void FixedUpdate()
+    private bool isWalking = false;
+
+    private void Update()
     {
-        if (!canMove) return;  // Jika belum boleh bergerak, hentikan eksekusi FixedUpdate
-
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
-
-        // Tambahkan kecepatan jatuh saat di udara
-        if (rb.velocity.y < 0)
-        {
-            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
-        }
-    }
-
-    void Update()
-    {
-        if (!canMove) return;  // Jika belum boleh bergerak, hentikan eksekusi Update
+        if (!canMove) return;
 
         if (isFacingRight && horizontal < 0f)
         {
@@ -71,15 +86,39 @@ public class PlayerMovement : MonoBehaviour
 
         anim.SetBool("run", Mathf.Abs(horizontal) > 0.1f);
         anim.SetBool("jump", !IsGrounded());
-    }
 
-    public void Jump(InputAction.CallbackContext context)
-    {
-        if (context.performed && IsGrounded() && canMove)  // Tambahkan pengecekan canMove
+        if (IsGrounded() && Mathf.Abs(horizontal) > 0.1f)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpingPower * jumpMultiplier);
+            if (!isWalking)
+            {
+                AudioManager.Instance.PlaySFX(walkSFX);
+                isWalking = true;
+            }
+        }
+        else
+        {
+            isWalking = false;
+        }
+
+        if (IsGrounded())
+        {
+            isJumping = false;
         }
     }
+
+
+    public void Jump(InputAction.CallbackContext context)
+{
+    if (context.performed && IsGrounded() && canMove)
+    {
+        rb.velocity = new Vector2(rb.velocity.x, jumpingPower * jumpMultiplier);
+
+        // Memastikan SFX lompat diputar
+        AudioManager.Instance.PlaySFX(jumpSFX);
+    }
+}
+
+
 
     private bool IsGrounded()
     {
@@ -96,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        if (canMove)  // Hanya baca input jika canMove true
+        if (canMove)
         {
             horizontal = context.ReadValue<Vector2>().x;
         }
@@ -104,9 +143,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Enemy" && canMove)  // Hanya boleh menyerang jika canMove true
+        if (collision.tag == "Enemy" && canMove)
         {
-            // Panggil TakeDamage dan kirimkan Rigidbody pemain serta bounceForce
             collision.GetComponent<EnemyHealth>().TakeDamage(1, rb, bounceForce);
         }
     }

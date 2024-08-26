@@ -1250,7 +1250,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 983101118}
         m_TargetAssemblyTypeName: VolumeSettings, Assembly-CSharp
         m_MethodName: SetMusicVolume
         m_Mode: 1
@@ -1836,7 +1836,19 @@ MonoBehaviour:
   m_Value: 1.35
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 983101118}
+        m_TargetAssemblyTypeName: VolumeSettings, Assembly-CSharp
+        m_MethodName: SetSFXVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &389119190
 GameObject:
   m_ObjectHideFlags: 0
@@ -2493,6 +2505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   winPanel: {fileID: 203582221}
+  winSFX: {fileID: 8300000, guid: 81c1f76b45bce5840a4c5098d54a33f1, type: 3}
 --- !u!61 &492538256
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4976,7 +4989,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3048041146519551933, guid: a4f2e606615e7fb4ca9cd28acc67f9eb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3048041146519551933, guid: a4f2e606615e7fb4ca9cd28acc67f9eb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5519,6 +5532,7 @@ GameObject:
   - component: {fileID: 983101114}
   - component: {fileID: 983101112}
   - component: {fileID: 983101117}
+  - component: {fileID: 983101118}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -5645,6 +5659,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelText: {fileID: 1364906698}
+--- !u!114 &983101118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983101110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdeb24b76c288cb4fb376552d3008682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myMixer: {fileID: 24100000, guid: 80853106241481f4680765654bd50295, type: 2}
+  musicSlider: {fileID: 231395744}
+  sfxSlider: {fileID: 370324997}
 --- !u!1001 &1005647759
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6929,7 +6958,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3048041146519551933, guid: a4f2e606615e7fb4ca9cd28acc67f9eb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.09000015
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3048041146519551933, guid: a4f2e606615e7fb4ca9cd28acc67f9eb, type: 3}
       propertyPath: m_LocalPosition.z

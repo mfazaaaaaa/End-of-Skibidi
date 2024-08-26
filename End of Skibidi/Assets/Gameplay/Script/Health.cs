@@ -16,6 +16,12 @@ public class Health : MonoBehaviour
     private Renderer[] renderers;
     private UiManager uiManager;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip hurtSFX;  // Tambahkan variabel untuk SFX
+    [SerializeField] private AudioClip defeatSFX;  // Tambahkan variabel untuk SFX kalah
+
+    private AudioManager audioManager;  // Tambahkan referensi ke AudioManager
+
     private void Awake()
     {
         currentHealth = startingHealth;
@@ -24,6 +30,9 @@ public class Health : MonoBehaviour
 
         // Menghubungkan UiManager
         uiManager = FindObjectOfType<UiManager>();
+
+        // Menghubungkan AudioManager
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     public void TakeDamage(float _damage)
@@ -34,6 +43,13 @@ public class Health : MonoBehaviour
         {
             // damage
             anim.SetTrigger("hurt");
+
+            // Mainkan SFX hurt
+            if (hurtSFX != null)
+            {
+                audioManager.PlaySFX(hurtSFX);  // Pastikan ini terhubung dengan volume yang diatur
+            }
+
             // iFrames
             StartCoroutine(Invulnerability());
         }
@@ -44,9 +60,15 @@ public class Health : MonoBehaviour
             {
                 anim.SetTrigger("die");
 
-                //player
+                // player
                 if (GetComponent<PlayerMovement>() != null)
                     GetComponent<PlayerMovement>().enabled = false;
+
+                // Mainkan SFX kalah
+                if (defeatSFX != null)
+                {
+                    audioManager.PlaySFX(defeatSFX);  // Pastikan ini terhubung dengan volume yang diatur
+                }
 
                 // Tampilkan lose panel
                 if (uiManager != null)

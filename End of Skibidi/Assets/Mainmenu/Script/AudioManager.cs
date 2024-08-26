@@ -4,21 +4,25 @@ using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager Instance { get; private set; }  // Singleton instance
+
     [Header("---------- Audio Source ----------")]
-    [SerializeField] AudioSource mainMenuMusicSource;
-    [SerializeField] AudioSource gameplayMusicSource;
+    [SerializeField] private AudioSource mainMenuMusicSource;
+    [SerializeField] private AudioSource gameplayMusicSource;
+    [SerializeField] private AudioSource sfxSource;  // AudioSource untuk SFX
 
     [Header("---------- Audio Mixer ----------")]
-    [SerializeField] AudioMixer audioMixer;  // Referensi ke AudioMixer
+    [SerializeField] private AudioMixer audioMixer;  // Referensi ke AudioMixer
 
-    private static AudioManager instance;
+    private float sfxVolume = 1f;  // Volume default SFX
 
     private void Awake()
     {
-        if (instance == null)
+        // Singleton pattern
+        if (Instance == null)
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject);  // Mencegah AudioManager dihancurkan saat berpindah scene
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -28,7 +32,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;  // Tambahkan event listener saat scene berganti
+        SceneManager.sceneLoaded += OnSceneLoaded;  // Event listener untuk scene change
     }
 
     private void OnDestroy()
@@ -38,7 +42,7 @@ public class AudioManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        PlayMusicBasedOnScene();  // Panggil fungsi ini setiap kali scene berubah
+        PlayMusicBasedOnScene();  // Atur musik sesuai dengan scene
     }
 
     private void PlayMusicBasedOnScene()
@@ -77,14 +81,24 @@ public class AudioManager : MonoBehaviour
 
     public void PlaySFX(AudioClip clip)
     {
-        if (clip != null)
+        if (sfxSource != null && clip != null)
         {
-            AudioSource.PlayClipAtPoint(clip, Camera.main.transform.position);
+            sfxSource.PlayOneShot(clip);  // Putar SFX dengan volume dari AudioMixer
+        }
+        else
+        {
+            Debug.LogWarning("SFXSource or AudioClip is not set!");
         }
     }
 
     public void SetSFXVolume(float volume)
     {
-        audioMixer.SetFloat("sfx", Mathf.Log10(volume) * 20);
+        sfxVolume = volume;  // Simpan volume SFX dari slider
+        audioMixer.SetFloat("sfx", Mathf.Log10(volume) * 20);  // Atur volume melalui AudioMixer
+    }
+
+    public bool IsMainMenuMusicPlaying()
+    {
+        return mainMenuMusicSource.isPlaying;
     }
 }

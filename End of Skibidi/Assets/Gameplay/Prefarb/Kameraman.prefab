@@ -567,6 +567,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   bounceForce: 10
+  jumpSFX: {fileID: 8300000, guid: 904e34b925d0668439f2ecb39debd59d, type: 3}
+  walkSFX: {fileID: 8300000, guid: ee5fa4bc76d0b0049ab8e6982b384776, type: 3}
 --- !u!95 &1022033875197348723
 Animator:
   serializedVersion: 5
@@ -603,3 +605,5 @@ MonoBehaviour:
   startingHealth: 3
   iFrameDuration: 1
   numberOfFlashes: 3
+  hurtSFX: {fileID: 8300000, guid: 4017bdd57c7908c4db3745d4e3c4b5d9, type: 3}
+  defeatSFX: {fileID: 8300000, guid: f298eb7cc245a824a83d6e3bbb26e5a5, type: 3}

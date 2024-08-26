@@ -2407,6 +2407,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myMixer: {fileID: 24100000, guid: 80853106241481f4680765654bd50295, type: 2}
   musicSlider: {fileID: 1928056680}
+  sfxSlider: {fileID: 1202695098}
 --- !u!1 &649722073
 GameObject:
   m_ObjectHideFlags: 0
@@ -2833,6 +2834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   winPanel: {fileID: 622764397}
+  winSFX: {fileID: 8300000, guid: 81c1f76b45bce5840a4c5098d54a33f1, type: 3}
 --- !u!1001 &706384369
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4105,7 +4107,19 @@ MonoBehaviour:
   m_Value: 1.35
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 638714433}
+        m_TargetAssemblyTypeName: VolumeSettings, Assembly-CSharp
+        m_MethodName: SetSFXVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1223390791
 GameObject:
   m_ObjectHideFlags: 0
@@ -9221,6 +9235,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kameraman
       objectReference: {fileID: 0}
+    - target: {fileID: 6891546177279428737, guid: 9efc4db3c0059424f9f1982f89acd9df, type: 3}
+      propertyPath: hurtSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 4017bdd57c7908c4db3745d4e3c4b5d9, type: 3}
+    - target: {fileID: 6891546177279428737, guid: 9efc4db3c0059424f9f1982f89acd9df, type: 3}
+      propertyPath: defeatSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: f298eb7cc245a824a83d6e3bbb26e5a5, type: 3}
+    - target: {fileID: 7122525085374543694, guid: 9efc4db3c0059424f9f1982f89acd9df, type: 3}
+      propertyPath: jumpSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 904e34b925d0668439f2ecb39debd59d, type: 3}
+    - target: {fileID: 7122525085374543694, guid: 9efc4db3c0059424f9f1982f89acd9df, type: 3}
+      propertyPath: walkSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: ee5fa4bc76d0b0049ab8e6982b384776, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

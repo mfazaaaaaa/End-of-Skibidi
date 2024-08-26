@@ -4733,7 +4733,19 @@ MonoBehaviour:
   m_Value: 1.35
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1858551816}
+        m_TargetAssemblyTypeName: VolumeSettings, Assembly-CSharp
+        m_MethodName: SetSFXVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &881191073
 GameObject:
   m_ObjectHideFlags: 0
@@ -5152,7 +5164,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1858551816}
         m_TargetAssemblyTypeName: VolumeSettings, Assembly-CSharp
         m_MethodName: SetMusicVolume
         m_Mode: 1
@@ -9450,6 +9462,7 @@ GameObject:
   - component: {fileID: 1858551812}
   - component: {fileID: 1858551811}
   - component: {fileID: 1858551810}
+  - component: {fileID: 1858551816}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -9576,6 +9589,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1858551816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858551809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdeb24b76c288cb4fb376552d3008682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myMixer: {fileID: 24100000, guid: 80853106241481f4680765654bd50295, type: 2}
+  musicSlider: {fileID: 996900816}
+  sfxSlider: {fileID: 875477305}
 --- !u!1 &1867602826
 GameObject:
   m_ObjectHideFlags: 0
@@ -10847,6 +10875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   winPanel: {fileID: 373573173}
+  winSFX: {fileID: 8300000, guid: 81c1f76b45bce5840a4c5098d54a33f1, type: 3}
 --- !u!61 &2006712921
 BoxCollider2D:
   m_ObjectHideFlags: 0
