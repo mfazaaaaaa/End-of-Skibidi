@@ -24,12 +24,11 @@ public class UiManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-
     private void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
-            if(pauseScreen.activeInHierarchy)
+            if (pauseScreen.activeInHierarchy)
                 PauseGame(false);
             else
                 PauseGame(true);
@@ -40,10 +39,16 @@ public class UiManager : MonoBehaviour
     {
         pauseScreen.SetActive(status);
 
-        if(status)
+        if (status)
+        {
             Time.timeScale = 0;
+            // Optionally pause audio here if needed
+        }
         else
+        {
             Time.timeScale = 1;
+            // Optionally resume audio here if needed
+        }
     }
 
     public void Setting(bool status)

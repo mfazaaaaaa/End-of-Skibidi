@@ -2266,6 +2266,7 @@ GameObject:
   - component: {fileID: 638714427}
   - component: {fileID: 638714431}
   - component: {fileID: 638714432}
+  - component: {fileID: 638714433}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2392,6 +2393,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelText: {fileID: 1643223005}
+--- !u!114 &638714433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638714426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdeb24b76c288cb4fb376552d3008682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myMixer: {fileID: 24100000, guid: 80853106241481f4680765654bd50295, type: 2}
+  musicSlider: {fileID: 1928056680}
 --- !u!1 &649722073
 GameObject:
   m_ObjectHideFlags: 0
@@ -7407,7 +7422,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 638714433}
         m_TargetAssemblyTypeName: VolumeSettings, Assembly-CSharp
         m_MethodName: SetMusicVolume
         m_Mode: 1
