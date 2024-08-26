@@ -1,13 +1,11 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
     [Header("---------- Audio Source ----------")]
-    [SerializeField] AudioSource musicSource;
-    [SerializeField] AudioSource SFXSource;
-
-    [Header("---------- Audio Clip ----------")]
-    public AudioClip background;
+    [SerializeField] private AudioSource mainMenuMusicSource;
+    [SerializeField] private AudioSource gameplayMusicSource;
 
     private static AudioManager instance;
 
@@ -16,7 +14,7 @@ public class AudioManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject); // Mencegah AudioManager dihancurkan saat berpindah scene
         }
         else
         {
@@ -26,26 +24,47 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        if (musicSource != null && background != null)
-        {
-            musicSource.clip = background;
-            musicSource.Play();
-        }
-        else
-        {
-            Debug.LogWarning("MusicSource or Background AudioClip is not set!");
-        }
+        PlayMusicBasedOnScene();
+        SceneManager.sceneLoaded += OnSceneLoaded; // Tambahkan event listener saat scene berganti
     }
 
-    public void PlaySFX(AudioClip clip)
+    private void OnDestroy()
     {
-        if (SFXSource != null && clip != null)
+        SceneManager.sceneLoaded -= OnSceneLoaded; // Hapus event listener saat script dihancurkan
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log($"Scene Loaded: {scene.name}"); // Debugging
+        PlayMusicBasedOnScene(); // Panggil fungsi ini setiap kali scene berubah
+    }
+
+    private void PlayMusicBasedOnScene()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+        Debug.Log($"Current Scene Name: {sceneName}"); // Debugging
+
+        if (sceneName == "MainMenu")
         {
-            SFXSource.PlayOneShot(clip);
+            if (!mainMenuMusicSource.isPlaying)
+            {
+                Debug.Log("Playing Main Menu Music"); // Debugging
+                gameplayMusicSource.Stop();
+                mainMenuMusicSource.Play();
+            }
+        }
+        else if (sceneName.StartsWith("Level1")) // Misalnya nama scene gameplay dimulai dengan "Level"
+        {
+            if (!gameplayMusicSource.isPlaying)
+            {
+                Debug.Log("Playing Gameplay Music"); // Debugging
+                mainMenuMusicSource.Stop();
+                gameplayMusicSource.Play();
+            }
         }
         else
         {
-            Debug.LogWarning("SFXSource or AudioClip is not set!");
+            Debug.LogWarning($"Scene {sceneName} tidak dikenali untuk pemutaran musik"); // Debugging
         }
     }
 }

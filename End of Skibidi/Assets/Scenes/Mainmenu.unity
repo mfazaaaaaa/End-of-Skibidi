@@ -621,7 +621,7 @@ GameObject:
   - component: {fileID: 89941474}
   - component: {fileID: 89941473}
   m_Layer: 0
-  m_Name: Sfx
+  m_Name: music g
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -636,9 +636,9 @@ AudioSource:
   m_GameObject: {fileID: 89941472}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  OutputAudioMixerGroup: {fileID: -4082228363600211611, guid: 80853106241481f4680765654bd50295, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 743e52d43f4b53745bff76ea518f25b5, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2761,7 +2761,7 @@ GameObject:
   - component: {fileID: 822870317}
   - component: {fileID: 822870318}
   m_Layer: 5
-  m_Name: Slider sfx
+  m_Name: Slider music g
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2839,7 +2839,19 @@ MonoBehaviour:
   m_Value: 1.35
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2146378836}
+        m_TargetAssemblyTypeName: VolumeSettings, Assembly-CSharp
+        m_MethodName: SetMusicVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &867562705
 GameObject:
   m_ObjectHideFlags: 0
@@ -3746,9 +3758,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fd95f8c6850d234abaabae9a134f1d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicSource: {fileID: 1745451290}
-  SFXSource: {fileID: 89941473}
-  background: {fileID: 8300000, guid: db12b56b181b8634cb4c042919da9d98, type: 3}
+  mainMenuMusicSource: {fileID: 1745451290}
+  gameplayMusicSource: {fileID: 89941473}
 --- !u!1 &1319119514
 GameObject:
   m_ObjectHideFlags: 0
