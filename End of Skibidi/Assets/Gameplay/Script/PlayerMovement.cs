@@ -29,12 +29,17 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip jumpSFX;
     public AudioClip walkSFX;
 
+    private AudioManager audioManager; // Tambahkan referensi ke AudioManager
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.interpolation = RigidbodyInterpolation2D.Interpolate;
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
         anim = GetComponent<Animator>();
+
+        // Inisialisasi AudioManager
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     private void FixedUpdate()
@@ -51,12 +56,11 @@ public class PlayerMovement : MonoBehaviour
         // Memastikan SFX Jump diputar tanpa gangguan
         if (isJumping && Time.time - lastJumpTime >= jumpSFXCooldown)
         {
-            AudioManager.Instance.PlaySFX(jumpSFX);
+            audioManager.PlaySFX(jumpSFX);
             lastJumpTime = Time.time;
             isJumping = false;
         }
     }
-
 
     private void Start()
     {
@@ -69,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
         canMove = true;
     }
 
-    private bool isWalking = false;
+    private bool isWalking = false;  // Tambahkan variabel untuk cek status berjalan
 
     private void Update()
     {
@@ -87,38 +91,46 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("run", Mathf.Abs(horizontal) > 0.1f);
         anim.SetBool("jump", !IsGrounded());
 
+        // Cek jika pemain sedang berjalan dan berada di tanah
         if (IsGrounded() && Mathf.Abs(horizontal) > 0.1f)
         {
             if (!isWalking)
             {
-                AudioManager.Instance.PlaySFX(walkSFX);
                 isWalking = true;
+                audioManager.PlaySFX(walkSFX);  // Mainkan SFX jalan hanya sekali
             }
         }
         else
         {
-            isWalking = false;
+            isWalking = false;  // Reset status berjalan ketika berhenti atau melompat
         }
 
+        // Reset status lompat jika sudah di tanah
         if (IsGrounded())
         {
             isJumping = false;
         }
     }
 
-
     public void Jump(InputAction.CallbackContext context)
-{
-    if (context.performed && IsGrounded() && canMove)
     {
-        rb.velocity = new Vector2(rb.velocity.x, jumpingPower * jumpMultiplier);
+        if (context.performed && IsGrounded() && canMove && !isJumping)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpingPower * jumpMultiplier);
 
-        // Memastikan SFX lompat diputar
-        AudioManager.Instance.PlaySFX(jumpSFX);
+            // Cek cooldown agar SFX lompat tidak diputar berulang
+            if (Time.time - lastJumpTime >= jumpSFXCooldown)
+            {
+                if (!audioManager.sfxSource.isPlaying)  // Pastikan SFX lompat tidak terganggu
+                {
+                    audioManager.PlaySFX(jumpSFX);
+                    lastJumpTime = Time.time;
+                }
+            }
+
+            isJumping = true;
+        }
     }
-}
-
-
 
     private bool IsGrounded()
     {

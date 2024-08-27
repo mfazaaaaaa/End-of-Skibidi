@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
@@ -9,12 +10,13 @@ public class AudioManager : MonoBehaviour
     [Header("---------- Audio Source ----------")]
     [SerializeField] private AudioSource mainMenuMusicSource;
     [SerializeField] private AudioSource gameplayMusicSource;
-    [SerializeField] private AudioSource sfxSource;  // AudioSource untuk SFX
+    [SerializeField] public AudioSource sfxSource;  // AudioSource untuk SFX
 
     [Header("---------- Audio Mixer ----------")]
     [SerializeField] private AudioMixer audioMixer;  // Referensi ke AudioMixer
 
     private float sfxVolume = 1f;  // Volume default SFX
+
 
     private void Awake()
     {
@@ -77,25 +79,42 @@ public class AudioManager : MonoBehaviour
         {
             gameplayMusicSource.Stop();
         }
+        // Jangan menghentikan SFX
     }
+
+
+    public bool IsSFXPlaying()
+    {
+        return sfxSource.isPlaying;
+    }
+
 
     public void PlaySFX(AudioClip clip)
     {
-        if (sfxSource != null && clip != null)
+        StartCoroutine(PlaySFXCoroutine(clip));
+    }
+
+    private IEnumerator PlaySFXCoroutine(AudioClip clip)
+    {
+        if (clip != null && sfxSource != null)
         {
-            sfxSource.PlayOneShot(clip);  // Putar SFX dengan volume dari AudioMixer
-        }
-        else
-        {
-            Debug.LogWarning("SFXSource or AudioClip is not set!");
+            sfxSource.clip = clip;
+            sfxSource.Play();
+
+            // Tunggu sampai SFX selesai diputar
+            yield return new WaitForSeconds(clip.length);
         }
     }
 
+
+
+    // Set up slider and SFX volume control
     public void SetSFXVolume(float volume)
     {
-        sfxVolume = volume;  // Simpan volume SFX dari slider
-        audioMixer.SetFloat("sfx", Mathf.Log10(volume) * 20);  // Atur volume melalui AudioMixer
+        sfxVolume = volume;
+        audioMixer.SetFloat("SFXVolume", Mathf.Log10(volume) * 20);  // Adjust using logarithmic scale
     }
+
 
     public bool IsMainMenuMusicPlaying()
     {
